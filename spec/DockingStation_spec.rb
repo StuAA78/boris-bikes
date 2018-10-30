@@ -18,7 +18,13 @@ describe DockingStation do
   it "bike can be docked" do
     station = DockingStation.new
     bike = station.release_bike
-    expect(station.dock(bike)).to eq true
+    expect(station.dock(bike)).to be_instance_of Bike
   end
 
+  it "can see a bike that is docked" do
+    station = DockingStation.new
+    bike = station.release_bike
+    station.dock(bike)
+    expect(station.docked_bike).to be_instance_of Bike
+  end
 end
