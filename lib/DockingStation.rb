@@ -10,10 +10,14 @@ class DockingStation
   end
 
   def release_bike
-    empty? ? (fail "No bike docked") : @docked_bikes.first
+    @docked_bikes.each { |b| return b if b.working? }
+    fail "No working bikes docked"
   end
 
-  def dock(bike)
+  def dock(bike, broken=false)
+    if broken
+      bike.broken = true
+    end
     full? ? @docked_bikes << bike : (fail "No space")
   end
 

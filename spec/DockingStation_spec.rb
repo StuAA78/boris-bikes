@@ -43,4 +43,24 @@ describe DockingStation do
     expect(DockingStation.new.capacity).to eq 20
   end
 
+  it "can report a bike as broken when docking" do
+    station = DockingStation.new
+    station.dock(Bike.new, true)
+    expect(station.docked_bikes.last.broken?).to eq true
+  end
+
+  it "does not release a broken bike" do
+    station = DockingStation.new
+    station.dock(Bike.new, true)
+    station.dock(Bike.new)
+    expect(station.release_bike.working?).to eq true
+  end
+
+  it "does not release any bike if all bikes are broken" do
+    station = DockingStation.new
+    station.dock(Bike.new, true)
+    station.dock(Bike.new, true)
+    expect{station.release_bike}.to raise_exception
+  end
+
 end
