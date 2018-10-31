@@ -4,27 +4,30 @@ require 'Bike'
 describe DockingStation do
   it {is_expected.to respond_to(:release_bike)}
 
-  it 'creates a new bike' do
-    station = DockingStation.new
-    expect(station.release_bike).to be_instance_of Bike
-  end
-
   it 'bike is working' do
-    station = DockingStation.new
-    bike = station.release_bike
+    bike = Bike.new
     expect(bike.working?).to eq true
   end
 
   it "bike can be docked" do
     station = DockingStation.new
-    bike = station.release_bike
-    expect(station.dock(bike)).to be_instance_of Bike
+    expect(station.dock(Bike.new)).to be_instance_of Bike
   end
 
   it "can see a bike that is docked" do
     station = DockingStation.new
-    bike = station.release_bike
-    station.dock(bike)
+    station.dock(Bike.new)
     expect(station.docked_bike).to be_instance_of Bike
   end
+
+  it "can't release a bike if there are none available" do
+    expect{subject.release_bike}.to raise_exception
+  end
+
+  it "can release a bike if one is docked" do
+    station = DockingStation.new
+    station.dock(Bike.new)
+    expect(station.release_bike).to be_instance_of Bike
+  end
+
 end
