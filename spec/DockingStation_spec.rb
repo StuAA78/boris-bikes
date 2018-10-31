@@ -34,4 +34,13 @@ describe DockingStation do
     station = DockingStation.new
     expect{(DockingStation::DEFAULT_CAPACITY + 1).times { station.dock(Bike.new) } }.to raise_exception
   end
+
+  it "can set a non-default capacity" do
+    expect(DockingStation.new(5).capacity).to eq 5
+  end
+
+  it "has a default capacity of 20" do
+    expect(DockingStation.new.capacity).to eq 20
+  end
+
 end
