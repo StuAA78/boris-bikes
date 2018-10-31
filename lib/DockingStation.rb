@@ -6,11 +6,20 @@ class DockingStation
   end
 
   def release_bike
-    @docked_bikes.any? ? @docked_bikes.first : (fail "No bike docked")
+    empty? ? (fail "No bike docked") : @docked_bikes.first
   end
 
   def dock(bike)
-    @docked_bikes.size < 20 ? @docked_bikes << bike : (fail "No space")
+    full? ? @docked_bikes << bike : (fail "No space")
   end
 
+  private
+  def full?
+    !!(@docked_bikes.size < 20)
+  end
+
+  def empty?
+    @docked_bikes.empty?
+  end
 end
+
