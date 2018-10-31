@@ -64,8 +64,7 @@ describe DockingStation do
   it "does not release any bike if all bikes are broken" do
     allow(bike).to receive(:working?).and_return(false)
     station = DockingStation.new
-    station.dock( bike,true)
-    station.dock( bike,true)
+    station.dock(bike,true)
     expect{station.release_bike}.to raise_exception
   end
 
