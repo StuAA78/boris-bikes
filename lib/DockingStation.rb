@@ -10,11 +10,7 @@ class DockingStation
   end
 
   def dock(bike)
-#    @docked_bikes ? (fail "No space") : (@docked_bikes = bike)
-    if @docked_bikes.size < 20
-      @docked_bikes << bike
-    else
-      raise "No space"
-    end
+    @docked_bikes.size < 20 ? @docked_bikes << bike : (fail "No space")
   end
+
 end
