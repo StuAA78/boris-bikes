@@ -30,4 +30,9 @@ describe DockingStation do
     expect(station.release_bike).to be_instance_of Bike
   end
 
+  it "can't dock a bike if there is no capacity" do
+    station = DockingStation.new
+    station.dock(Bike.new)
+    expect{ station.dock(Bike.new) }.to raise_exception
+  end
 end

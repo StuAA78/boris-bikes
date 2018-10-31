@@ -6,6 +6,6 @@ class DockingStation
   end
 
   def dock(bike)
-    @docked_bike = bike
+    @docked_bike ? (fail "No space") : (@docked_bike = bike)
   end
 end
