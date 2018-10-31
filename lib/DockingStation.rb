@@ -1,6 +1,8 @@
 class DockingStation
   attr_reader :docked_bikes
 
+  DEFAULT_CAPACITY = 20
+
   def initialize
     @docked_bikes = Array.new
   end
@@ -15,7 +17,7 @@ class DockingStation
 
   private
   def full?
-    !!(@docked_bikes.size < 20)
+    !!(@docked_bikes.size < DEFAULT_CAPACITY)
   end
 
   def empty?

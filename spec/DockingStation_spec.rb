@@ -32,6 +32,6 @@ describe DockingStation do
 
   it "can't dock a bike if there is no capacity" do
     station = DockingStation.new
-    expect{ 21.times { station.dock(Bike.new) } }.to raise_exception
+    expect{(DockingStation::DEFAULT_CAPACITY + 1).times { station.dock(Bike.new) } }.to raise_exception
   end
 end
