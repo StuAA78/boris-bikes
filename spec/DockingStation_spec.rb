@@ -11,13 +11,13 @@ describe DockingStation do
 
   it "bike can be docked" do
     station = DockingStation.new
-    expect(station.dock(Bike.new)).to be_instance_of Bike
+    expect(station.dock(Bike.new).size).to eq 1
   end
 
   it "can see a bike that is docked" do
     station = DockingStation.new
     station.dock(Bike.new)
-    expect(station.docked_bike).to be_instance_of Bike
+    expect(station.docked_bikes.first).to be_instance_of Bike
   end
 
   it "can't release a bike if there are none available" do
@@ -32,7 +32,6 @@ describe DockingStation do
 
   it "can't dock a bike if there is no capacity" do
     station = DockingStation.new
-    station.dock(Bike.new)
-    expect{ station.dock(Bike.new) }.to raise_exception
+    expect{ 21.times { station.dock(Bike.new) } }.to raise_exception
   end
 end
